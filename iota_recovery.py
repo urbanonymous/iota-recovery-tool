@@ -59,7 +59,7 @@ def main():
 	n_addresses = int(input("Number of addresses: "))
 	#n_addresses = 100
 
-	iota_node = "http://eugene.iota.community:14265" # NODE SERVER
+	iota_node = "https://nodes.iota.cafe:443" # NODE SERVER
 
 	print ("This can take a while...")
 	print("\n\n\n")
