@@ -11,15 +11,20 @@ def addressGenerator(seed, iota_node, n_addresses):
 	addresses = gna_result['addresses']
 	total = 0
 	i = 0
+	founds = []
+
 	while i < n_addresses:
 		address = [addresses[i]]
 		balance = addressBalance(address, iota_node)
 		print ("Address " + str(address[0]) + " has a balance of: " + str(balance))
 		total += balance
 		i += 1
+		if balance:
+			founds.append(address)
+		
 	if total > 0:
 		print ("The above addresses have a total balance of " + str(total) + " Iota tokens!!!")
-		return True
+		return founds
 	else:
 		print ("No balance on those addresses!")
 		return False
@@ -41,9 +46,9 @@ def generateSeedAddresses(iota_target_seed, n_addresses, iota_node):
 			print("--Using", new_char)
 			working_seed = iota_target_seed[:idx] + new_char + iota_target_seed[idxp:]
 			
-			if addressGenerator(working_seed, iota_node, n_addresses):
-				money_found = True
-				print("MONEY FOUND!!! ")
+			money_found = addressGenerator(working_seed, iota_node, n_addresses)
+			if money_found:
+				print("MONEY FOUND!!! SEED: {}, WALLETS: {}".format(working_seed, money_found))
 				print("\n\n\n\n\n\n")
 				break
 
