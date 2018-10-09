@@ -7,7 +7,7 @@ char_set = ascii_uppercase + "9"
 # Generates addresses of a given seed using the "get_new_addresses()" function
 def addressGenerator(seed, iota_node, n_addresses):
 	api = Iota(iota_node, seed) 
-	gna_result = api.get_new_addresses(count=n_addresses) # This is the actual function to generate the address.
+	gna_result = api.get_new_addresses(count=n_addresses) # This is the actual function to generate the addresses
 	addresses = gna_result['addresses']
 	total = 0
 	i = 0
@@ -57,18 +57,16 @@ def generateSeedAddresses(iota_target_seed, n_addresses, iota_node):
 
 			
 def main():
-	# Get the target seed
-	iota_target_seed = str(input("Target seed: "))
-	#iota_target_seed = "MXJBHQOCOPWUWGKE9ZMYUDPUKLKICORJAFTMXKAHSXZ9BDHKBZNNVVZQHXNLLDUXTFOAQOYNEUQCAOFQA"
-					    
+	# Get inputs
+	iota_target_seed = str(input("Target seed: "))				    
 	n_addresses = int(input("Number of addresses: "))
-	#n_addresses = 100
 
-	iota_node = "https://nodes.iota.cafe:443" # NODE SERVER
+	iota_node = "https://nodes.iota.cafe:443" # Node Server
 
 	print ("This can take a while...")
 	print("\n\n\n")
-	#addressGenerator(iota_target_seed, iota_node, n_addresses)
+	
+	# Start generation of seeds and checking its balance
 	generateSeedAddresses(iota_target_seed, n_addresses, iota_node)
  
 if __name__ == '__main__':
